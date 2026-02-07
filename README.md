@@ -7,8 +7,8 @@ A complete starter kit for working with the Anthropic Claude Skills API, includi
 ### 1. Clone or Download This Repository
 
 ```bash
-git clone <your-repo-url>
-cd claude-skills-experiment-02.06.26
+git clone https://github.com/blossomz37/claude-skills-api.git
+cd claude-skills-api
 ```
 
 ### 2. Set Up Environment
@@ -51,7 +51,7 @@ Located in `scripts/`:
 - **`list_skills.py`** - Lists all available Claude Skills (custom + pre-built)
 - **`test_skill.py`** - Tests a specific skill with a query
 
-Both scripts save output to timestamped markdown files (`response_YY.MM.DD.HH.MM.SS.md`).
+Both scripts save output to the `output/` directory as timestamped markdown files (`response_YY.MM.DD.HH.MM.SS.md`).
 
 ### 🌐 Web Interface
 
@@ -136,7 +136,7 @@ python scripts/test_skill.py
 ## 📊 File Structure
 
 ```
-claude-skills-experiment-02.06.26/
+claude-skills-api/
 ├── README.md                          # This file
 ├── API_CLAUDE_SKILLS_STARTER.md       # API guide
 ├── ANTHROPIC_API_HYPERPARAMETERS.md   # Hyperparameter reference
