@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Skills Interface</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🤖 Claude Skills Interface</h1>
+            <div class="header-controls">
+                <button id="settingsBtn" class="btn btn-secondary">⚙️ Settings</button>
+                <button id="exportBtn" class="btn btn-secondary">📥 Export Chat</button>
+                <button id="clearBtn" class="btn btn-secondary">🗑️ Clear</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="control-group">
+                    <label for="skillSelect">Active Skill</label>
+                    <select id="skillSelect" class="select">
+                        <option value="">No Skill (Standard Claude)</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="temperature">
+                        Temperature: <span id="tempValue">1.0</span>
+                    </label>
+                    <input type="range" id="temperature" min="0" max="2" step="0.1" value="1.0" class="slider">
+                    <small>Lower = focused, Higher = creative</small>
+                </div>
+
+                <div class="control-group">
+                    <label for="maxTokens">Max Tokens</label>
+                    <input type="number" id="maxTokens" value="4096" min="100" max="64000" step="100" class="input">
+                </div>
+
+                <div class="stats">
+                    <h3>Session Stats</h3>
+                    <div class="stat-item">
+                        <span>Messages:</span>
+                        <span id="messageCount">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Total Tokens:</span>
+                        <span id="tokenCount">0</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Chat Area -->
+            <main class="chat-container">
+                <div id="chatMessages" class="chat-messages">
+                    <div class="welcome-message">
+                        <h2>👋 Welcome to Claude Skills</h2>
+                        <p>Select a skill from the sidebar and start chatting!</p>
+                    </div>
+                </div>
+
+                <!-- Input Area -->
+                <div class="input-container">
+                    <div id="attachmentPreview" class="attachment-preview"></div>
+                    <div class="input-wrapper">
+                        <input type="file" id="fileInput" style="display: none;" multiple>
+                        <button id="attachBtn" class="btn btn-icon" title="Attach file">📎</button>
+                        <textarea id="messageInput" placeholder="Type your message..." rows="1"></textarea>
+                        <button id="sendBtn" class="btn btn-primary">Send</button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>⚙️ Settings</h2>
+                <button class="modal-close" onclick="closeSettings()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="control-group">
+                    <label for="apiKeyInput">Anthropic API Key *</label>
+                    <input type="password" id="apiKeyInput" class="input" placeholder="sk-ant-...">
+                    <small>Your API key is stored locally in your browser and never sent to our servers.</small>
+                </div>
+                
+                <div class="control-group">
+                    <label for="defaultSkillInput">Default Skill ID (optional)</label>
+                    <input type="text" id="defaultSkillInput" class="input" placeholder="skill_01...">
+                    <small>Leave blank to use no skill by default.</small>
+                </div>
+                
+                <div class="settings-status" id="settingsStatus"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeSettings()">Cancel</button>
+                <button class="btn btn-primary" onclick="saveSettings()">Save Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
