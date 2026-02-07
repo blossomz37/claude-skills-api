@@ -14,7 +14,12 @@ load_dotenv()
 def main():
     # Generate timestamp for output file
     timestamp = datetime.now().strftime("%y.%m.%d.%H.%M.%S")
-    output_file = f"response_{timestamp}.md"
+    
+    # Ensure output directory exists
+    output_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "output")
+    os.makedirs(output_dir, exist_ok=True)
+    
+    output_file = os.path.join(output_dir, f"response_{timestamp}.md")
     
     # Collect output lines
     output_lines = []
